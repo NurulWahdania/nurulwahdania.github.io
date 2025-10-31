@@ -26,23 +26,23 @@ Perbedaan utama antara keduanya terletak pada fokus pertanyaan yang mereka jawab
 #### **Test Scenario: Apa yang Harus Diuji?**
 * **Definisi:** Ini adalah gambaran umum tentang apa yang akan diuji untuk memastikan fungsi aplikasi sesuai kebutuhan. Ini berfokus pada fungsionalitas *end-to-end* dari perspektif pengguna.
 * **Komponen Utama:**
-    * **ID Scenario:** Nomor unik skenario.
-    * **Deskripsi:** Ringkasan skenario pengujian.
-    * **Modul/Fitur:** Modul atau fitur yang diuji.
+    * **ID Scenario:** Nomor unik skenario.
+    * **Deskripsi:** Ringkasan skenario pengujian.
+    * **Modul/Fitur:** Modul atau fitur yang diuji.
 
 ---
 
 #### **Test Case: Bagaimana Melakukan Pengujian?**
-* **Definisi:** Ini adalah langkah-langkah detail pengujian, yang mencakup input spesifik, proses, dan hasil yang diharapkan (expected result).
+* **Definisi:** Ini adalah langkah-langkah detail pengujian, yang mencakup input spesifik, proses, dan hasil yang diharapkan (*expected result*).
 * **Komponen Utama:**
-    * **ID Test Case:** Nomor unik test case.
-    * **Deskripsi:** Ringkasan singkat tentang pengujian.
-    * **Precondition:** Kondisi awal sebelum pengujian.
-    * **Test Steps:** Langkah-langkah detail pengujian.
-    * **Test Data:** Data yang digunakan untuk pengujian.
-    * **Expected Result:** Hasil yang diharapkan sesuai requirement.
-    * **Actual Result:** Hasil aktual yang muncul setelah pengujian.
-    * **Status:** Lulus/Gagal (Pass/Fail).
+    * **ID Test Case:** Nomor unik test case.
+    * **Deskripsi:** Ringkasan singkat tentang pengujian.
+    * **Precondition:** Kondisi awal sebelum pengujian.
+    * **Test Steps:** Langkah-langkah detail pengujian.
+    * **Test Data:** Data yang digunakan untuk pengujian.
+    * **Expected Result:** Hasil yang diharapkan sesuai requirement.
+    * **Actual Result:** Hasil aktual yang muncul setelah pengujian.
+    * **Status:** Lulus/Gagal (Pass/Fail).
 
 ---
 
@@ -108,6 +108,6 @@ Test Scenario, Test Case, dan Bug Report adalah pilar dari *Quality Assurance*. 
 
 ## **Referensi**
 
-Materi ini dirangkum dari presentasi "Test Scenario, Test Case, dan Bug Report" oleh Kelompok 4 - Sistem Informasi 2023. Presentasi (PPT) lengkap dari materi ini dapat dilihat melalui tautan berikut:
+Materi ini dirangkum dari presentasi "Test Scenario, Test Case, dan Bug Report" oleh Kelompok 4 - Sistem Informasi. Presentasi (PPT) lengkap dari materi ini dapat dilihat melalui tautan berikut:
 
-[Lihat Presentasi (PPT)](https://drive.google.com/file/d/1er2wwoA69y6OFqgGZCR4S9YeQEx0rM6z/view?usp=drive_link)
+[Lihat Presentasi (PPT)](https.google.com/file/d/1er2wwoA69y6OFqgGZCR4S9YeQEx0rM6z/view?usp=drive_link)

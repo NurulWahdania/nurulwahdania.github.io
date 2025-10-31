@@ -9,104 +9,137 @@ tags: [Unit Testing, SDLC, Testing, QA, JUnit, Jest, Pytest, AAA]
 image: /assets/img/pengantar-unit-testing.png
 ---
 
-# **Pengantar Unit Testing**
+# **Panduan Lengkap Software Testing: Dari Unit Testing hingga Bug Report**
 
-> **Ingin Coding Tanpa Khawatir Bug? Unit Testing Adalah Kuncinya!**
+Dalam pengembangan perangkat lunak, memastikan kualitas adalah kunci. Dua presentasi dari rekan-rekan kami di Sistem Informasi 2023 (Kelompok 4 dan Kelompok 5) mencakup spektrum fundamental dari *Quality Assurance* (QA).
 
-Unit testing adalah salah satu jenis pengujian perangkat lunak yang berfokus pada pengujian unit-unit terkecil dalam sebuah sistem, seperti *function*, *method*, atau *class*.
-
-Umumnya, unit testing adalah pengujian paling awal yang dilakukan oleh developer sebelum melakukan pengujian lain seperti *integration test* atau *end-to-end test*. Tujuannya adalah untuk menguji komponen secara terisolasi tanpa bergantung pada sistem lain.
-
-Dalam piramida pengujian, unit testing berada di lapisan paling dasar, yang berarti ini adalah jenis pengujian yang paling cepat dan murah untuk dijalankan.
+Postingan ini menggabungkan kedua materi tersebut untuk memberikan panduan komprehensif, mulai dari fondasi kode hingga pelaporan kesalahan fungsional.
 
 ---
 
-## **Analogi Unit Testing**
+## **Bagian 1: Fondasi - Pengantar Unit Testing (Materi Kel. 5)**
 
-Bayangkan proses perakitan sebuah mobil. Sebelum mobil dirakit menjadi satu kesatuan utuh, setiap komponen penting seperti mesin, rem, dan ban diuji secara terpisah terlebih dahulu.
+> **Ingin Coding Tanpa Khawatir Bug? [cite_start]Unit Testing Adalah Kuncinya!** [cite: 87]
 
-Unit testing bekerja dengan cara yang sama. Kita memastikan setiap "komponen" (fungsi/method) bekerja dengan benar secara individu. Jika setiap komponen sudah lulus tes, kita bisa lebih percaya diri bahwa mobil (aplikasi) yang dirakit akan berkualitas.
+Setiap aplikasi yang kompleks dibangun dari unit-unit kecil. Sebelum kita menguji keseluruhan aplikasi, kita harus memastikan setiap unit (komponen) berfungsi dengan benar.
 
----
+### **Apa Itu Unit Testing?**
 
-## **Kenapa Unit Testing Itu Penting?**
+[cite_start]Unit testing adalah jenis pengujian yang berfokus pada **unit-unit terkecil** dalam sebuah sistem, seperti *function*, *method*, atau *class*[cite: 130, 131].
 
-Menerapkan unit testing membantu memastikan keandalan, kualitas, dan kemudahan pemeliharaan kode yang kita tulis. Beberapa manfaat utamanya adalah:
+Dalam "Piramida Pengujian", unit testing adalah fondasi. [cite_start]Ini adalah tes yang jumlahnya paling banyak, paling **cepat** untuk dijalankan, dan paling **murah** untuk dibuat[cite: 136, 137].
 
-* **Mendeteksi Bug Lebih Awal:** Menemukan masalah di level fungsi jauh lebih mudah dan cepat daripada mencarinya di aplikasi yang sudah terintegrasi.
-* **Memberikan Dokumentasi Kode yang Hidup:** Unit test berfungsi sebagai contoh nyata tentang bagaimana sebuah fungsi seharusnya digunakan.
-* **Mempermudah Perubahan dan Refactoring:** Dengan unit test, kita bisa mengubah atau membersihkan kode (*refactor*) dengan percaya diri, karena tes akan langsung memberi tahu jika ada perubahan yang merusak fungsionalitas.
-* **Meningkatkan Kualitas Kode:** Proses penulisan tes memaksa developer untuk memikirkan desain kode yang lebih baik, modular, dan *testable*.
-* **Menghemat Waktu dan Biaya:** Memperbaiki bug di tahap awal jauh lebih murah daripada memperbaikinya setelah aplikasi dirilis ke produksi.
-* **Meningkatkan Kepercayaan Diri:** Developer bisa merilis fitur baru dengan lebih yakin karena sudah dilindungi oleh jaring pengaman berupa unit test.
 
----
 
-## **Pola Dasar: Arrange, Act, Assert (AAA)**
+* **Analogi:** Bayangkan merakit mobil. [cite_start]Unit testing adalah proses memastikan setiap komponen (mesin, rem, ban) berfungsi sempurna secara terpisah *sebelum* dirakit menjadi mobil utuh[cite: 142].
 
-AAA adalah pendekatan atau pola populer dalam penulisan unit test yang membagi setiap tes menjadi tiga bagian utama yang jelas:
+### **Kenapa Unit Testing Penting?**
 
-1.  **Arrange (Menyiapkan):** Menyiapkan semua kondisi awal dan data yang diperlukan untuk tes. (Contoh: membuat objek, inisialisasi variabel).
-2.  **Act (Menjalankan):** Menjalankan satu fungsi atau metode yang ingin diuji. Ini adalah inti dari tes.
-3.  **Assert (Memverifikasi):** Memverifikasi bahwa hasil dari tindakan (Act) yang dilakukan sesuai dengan apa yang kita harapkan (ekspektasi).
+[cite_start]Menerapkan unit testing sangat penting untuk[cite: 147]:
+* [cite_start]**Mendeteksi Bug Lebih Awal:** Menemukan masalah di level fungsi jauh lebih mudah[cite: 150].
+* [cite_start]**Mempermudah Refactoring:** Kita bisa mengubah kode dengan percaya diri, karena tes akan memberi tahu jika ada yang rusak[cite: 149].
+* [cite_start]**Dokumentasi yang Hidup:** Tes berfungsi sebagai contoh cara menggunakan kode tersebut[cite: 156].
+* [cite_start]**Menghemat Waktu dan Biaya:** Memperbaiki bug di tahap awal jauh lebih murah[cite: 154].
 
----
+### **Pola Dasar: Arrange, Act, Assert (AAA)**
 
-## **Framework Populer**
+[cite_start]Sebuah unit test yang baik umumnya mengikuti pola Tiga A (AAA)[cite: 193]:
+1.  [cite_start]**Arrange (Menyiapkan):** Menyiapkan semua kondisi awal dan data yang diperlukan[cite: 195].
+2.  [cite_start]**Act (Menjalankan):** Menjalankan satu fungsi atau metode yang ingin diuji[cite: 198].
+3.  [cite_start]**Assert (Memverifikasi):** Memverifikasi bahwa hasil dari tindakan (Act) sesuai dengan ekspektasi[cite: 201].
 
-Ada banyak *framework* yang membantu mempermudah penulisan unit test. Tiga yang paling populer di ekosistemnya masing-masing adalah:
+### **Framework Populer**
 
-### **1. JUnit 5 (Java)**
-* **Deskripsi:** Merupakan framework *de facto* dan pelopor dalam dunia unit testing untuk Java dan bahasa berbasis JVM lainnya (seperti Kotlin).
-* **Keunggulan:** Integrasi penuh dengan ekosistem Java, ekosistem yang matang, dan struktur berbasis anotasi (@Test) yang jelas.
-
-### **2. Jest (JavaScript)**
-* **Deskripsi:** Framework buatan Meta (Facebook) yang efisien dan populer untuk ekosistem JavaScript, terutama React, Node.js, dan TypeScript.
-* **Keunggulan:** Konfigurasi minimal (*zero-config*), *batteries-included* (sudah termasuk *assertion* dan *mocking*), dan fitur *snapshot testing*.
-
-### **3. Pytest (Python)**
-* **Deskripsi:** Framework yang sederhana, mudah dibaca, namun sangat kuat untuk semua jenis proyek Python (web, data science, API).
-* **Keunggulan:** Sintaks yang sederhana (tidak banyak *boilerplate*), fitur *fixtures* yang kuat untuk *setup* tes, dan pelaporan *error* yang sangat detail.
+Untuk mempermudah, kita menggunakan *framework* seperti:
+* [cite_start]**JUnit 5 (Java):** Pelopor dan standar de facto di ekosistem Java[cite: 168, 169].
+* [cite_start]**Pytest (Python):** Dikenal karena sintaksnya yang sederhana dan fitur *fixtures*-nya yang kuat[cite: 184, 188, 189].
+* [cite_start]**Jest (JavaScript):** Pilihan populer untuk React, Node.js, dll., dengan konfigurasi minimal[cite: 176, 178, 180].
 
 ---
 
-## **Contoh Penggunaan**
+## **Bagian 2: Perencanaan - Test Scenario & Test Case (Materi Kel. 4)**
 
-Berikut adalah contoh sederhana penggunaan JUnit untuk melakukan unit testing pada sebuah fungsi penjumlahan:
+Setelah memastikan unit-unit dasar kita berfungsi, kita perlu naik level dan menguji fungsionalitas aplikasi dari perspektif pengguna. Di sinilah Test Scenario dan Test Case berperan.
 
-```java
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
+### **Test Scenario: Apa yang Harus Diuji?**
 
-public class CalculatorTest {
+* [cite_start]**Definisi:** Ini adalah gambaran umum tentang apa yang akan diuji untuk memastikan fungsi aplikasi sesuai kebutuhan[cite: 12]. [cite_start]Ini menjawab pertanyaan, "Fitur apa yang akan kita uji?"[cite: 25].
+* [cite_start]**Komponen:** Biasanya terdiri dari ID, Deskripsi singkat, dan Modul/Fitur yang diuji[cite: 28].
 
-    @Test
-    public void testAdd() {
-        Calculator calculator = new Calculator();
-        assertEquals(5, calculator.add(2, 3), "2 + 3 harus sama dengan 5");
-    }
-}
-```
+**Contoh (Aplikasi BMI):**
+* [cite_start]**TS001:** Periksa fungsi slider input berat dan tinggi badan[cite: 32].
+* [cite_start]**TS002:** Periksa hasil perhitungan dan klasifikasi BMI[cite: 32].
+* [cite_start]**TS003:** Periksa fungsi penyimpanan history BMI[cite: 32].
 
-## **Sumber Daya Tambahan**
+### **Test Case: Bagaimana Melakukan Pengujian?**
 
-Untuk mempelajari lebih lanjut tentang unit testing, Anda dapat mengunjungi:
+* [cite_start]**Definisi:** Ini adalah langkah-langkah detail pengujian, yang mencakup input spesifik, proses, dan hasil yang diharapkan (*expected result*)[cite: 14]. [cite_start]Ini menjawab pertanyaan, "Bagaimana kita akan menguji fitur itu?"[cite: 26].
+* [cite_start]**Komponen:** Jauh lebih rinci, mencakup ID, Deskripsi, Precondition, Test Steps, Test Data, Expected Result, Actual Result, dan Status (Pass/Fail)[cite: 30].
 
-- [Dokumentasi Resmi JUnit](https://junit.org/junit5/docs/current/user-guide/)
-- [Dokumentasi Resmi Jest](https://jestjs.io/docs/getting-started)
-- [Dokumentasi Resmi Pytest](https://docs.pytest.org/en/stable/)
+**Contoh (untuk Skenario TS002):**
+* [cite_start]**ID Test Case:** TC003[cite: 37].
+* [cite_start]**Deskripsi:** Verifikasi hasil perhitungan BMI sesuai rumus standar ($kg/m^2$)[cite: 37].
+* [cite_start]**Precondition:** Aplikasi terbuka[cite: 37].
+* **Test Steps:** 1. Masukkan tinggi 170cm. 2. [cite_start]Masukkan berat 65kg[cite: 37].
+* [cite_start]**Test Data:** Tinggi = 170, Berat = 65[cite: 37].
+* [cite_start]**Expected Result:** Hasil Perhitungan BMI... adalah 22.49[cite: 37].
 
 ---
 
-## **Kesimpulan**
+## **Bagian 3: Pelaporan - Bug Report (Materi Kel. 4)**
 
-Unit testing adalah fondasi dari pengembangan perangkat lunak yang berkualitas. Ini bukan hanya tentang mencari *bug*, tetapi tentang membangun kode yang andal, mudah dipelihara, dan kokoh untuk jangka panjang.
+Saat pengujian (baik Unit Test atau Test Case), *Actual Result* terkadang tidak sesuai dengan *Expected Result*. Ketika ini terjadi, kita harus membuat **Bug Report**.
 
-> **Pesan Utama:** Menerapkan unit testing dengan pola yang baik (seperti AAA) dan *framework* yang tepat adalah investasi awal yang akan menghemat banyak waktu, biaya, dan stres di kemudian hari.
+### **Apa Itu Bug Report?**
+
+[cite_start]Ini adalah laporan formal tentang kesalahan atau masalah pada sistem[cite: 16, 42]. Tujuannya adalah memberikan informasi yang jelas kepada developer agar mereka dapat mereproduksi dan memperbaiki masalah tersebut.
+
+### **Severity vs. Priority**
+
+Dua konsep penting dalam Bug Report:
+
+* [cite_start]**Bug Severity (Tingkat Keparahan):** Mengukur dampak *bug* pada fungsionalitas *software*[cite: 45].
+    * [cite_start]**Critical:** Menyebabkan kegagalan total, aplikasi tidak dapat digunakan[cite: 52].
+    * [cite_start]**Major (High):** Fungsionalitas utama tidak bekerja dengan benar[cite: 50].
+    * [cite_start]**Minor (Medium):** Tidak memengaruhi fungsionalitas utama, tapi menyebabkan ketidaknyamanan[cite: 48].
+    * [cite_start]**Low:** Bug kosmetik atau minor yang tidak merusak sistem[cite: 46].
+
+* **Bug Priority (Prioritas Perbaikan):** Menentukan seberapa mendesak *bug* tersebut harus diperbaiki (sering ditentukan oleh dampak bisnis).
+    * [cite_start]**P1 (Urgent/Critical):** Harus diperbaiki sesegera mungkin[cite: 55].
+    * [cite_start]**P2 (High):** Bug penting yang harus diperbaiki secepatnya[cite: 57].
+    * [cite_start]**P3 (Medium):** Bisa diperbaiki di rilis berikutnya[cite: 59].
+    * [cite_start]**P4 (Low):** Bisa diperbaiki kapan saja[cite: 61].
+
+### **Contoh Format Bug Report**
+
+* [cite_start]**Bug Title:** Perhitungan BMI salah saat input berat 60kg dan tinggi 170cm[cite: 63].
+* [cite_start]**Bug ID:** BMI-001[cite: 63].
+* [cite_start]**Step to reproduce:** 1. Buka aplikasi... 2. Masukkan Berat = 60...[cite: 63].
+* [cite_start]**Actual result:** Hasil BMI = 12.5[cite: 63].
+* [cite_start]**Expected result:** Hasil BMI seharusnya = 20.8[cite: 63].
+* [cite_start]**Severity:** Major (High)[cite: 65].
+* [cite_start]**Priority:** P2 - High[cite: 65].
+
+---
+
+## **Kesimpulan: Cara Terbaik Menghindari Bug**
+
+[cite_start]Cara terbaik untuk menghindari *bug* adalah dengan menerapkan praktik terbaik di **seluruh siklus pengembangan**, tidak hanya saat pengujian[cite: 67].
+
+Kedua presentasi ini memberikan kita strategi gabungan:
+1.  [cite_start]**Mulai dari Awal (Unit Test):** Lakukan pengujian unit untuk mendeteksi bug di tahap awal[cite: 72].
+2.  [cite_start]**Pahami Persyaratan:** Pastikan semua persyaratan dipahami dengan jelas[cite: 70].
+3.  [cite_start]**Lakukan Code Review:** Minta pengembang lain meninjau kode untuk menemukan kesalahan[cite: 74].
+4.  [cite_start]**Buat Rencana Pengujian:** Buat *test plan* yang komprehensif (Test Scenarios & Cases)[cite: 76].
+5.  [cite_start]**Gunakan Otomatisasi:** Manfaatkan *automation testing* untuk deteksi lebih cepat[cite: 78].
+6.  [cite_start]**Kolaborasi Tim:** Tingkatkan komunikasi antara pengembang dan penguji[cite: 80].
+
+Dengan membangun fondasi yang kuat (Unit Testing) dan memiliki rencana yang jelas (Test Scenarios/Cases) serta proses pelaporan yang baik (Bug Reports), kita dapat memastikan perangkat lunak yang dirilis memiliki kualitas tinggi dan bebas dari kesalahan kritis.
 
 ---
 
 ## **Referensi**
-Materi ini dirangkum dari presentasi "Pengantar Unit Testing" oleh Kelompok 5 - Sistem Informasi 2023. Presentasi (PPT) lengkap dari materi ini dapat dilihat melalui tautan berikut:
+
+Materi ini dirangkum dari dua presentasi berikut:
 
 [Lihat Presentasi (PPT)](https://drive.google.com/file/d/1qSDpXubcQlTiRXuM2tdDO30rPo-3GkCS/view?usp=drive_link)

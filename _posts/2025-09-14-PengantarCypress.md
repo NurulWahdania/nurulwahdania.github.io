@@ -2,122 +2,142 @@
 layout: post
 date: 2025-09-14
 author: "Kelompok 8 - Sistem Informasi 2023"
-title: "Pengantar Cypress"
+title: "Pengantar Cypress: Framework E2E Testing Modern"
 categories: [Software Development, Quality Assurance, Automation]
-description: Pengantar Cypress, framework end-to-end testing modern untuk aplikasi web. Mencakup setup, perintah dasar, keunggulan, dan contoh test case.
-tags: [Cypress, Automation Testing, E2E Testing, QA, JavaScript, Web Testing]
+description: "Sebuah panduan pengantar Cypress, framework end-to-end testing modern, mencakup keunggulan, setup, perintah dasar, dan studi kasus pengujian."
+tags: [Cypress, Automation Testing, E2E Testing, QA, JavaScript, Web Testing, Node.js]
 image: /assets/img/pengantar-cypress.png
 ---
 
 # **Pengantar Cypress**
 
-Cypress adalah sebuah *framework* *end-to-end (E2E) testing* yang modern, dirancang khusus untuk menguji aplikasi web. Alat ini populer untuk menguji aplikasi yang dibangun dengan *framework* modern seperti React, Vue, dan Angular.
+Cypress adalah sebuah *framework* pengujian *end-to-end* (E2E) modern yang dirancang dari awal untuk mengatasi tantangan pengujian aplikasi web terbaru. Alat ini sangat populer untuk memvalidasi fungsionalitas aplikasi yang dibangun dengan *framework* JavaScript dinamis seperti React, Vue, dan Angular.
 
-Dalam piramida pengujian, Cypress utamanya berada di level **End-to-End**, namun juga sangat mumpuni untuk digunakan di level **Integration Testing** dan **Component Testing**.
+Dalam piramida pengujian, fokus utama Cypress adalah pada level **End-to-End**. Ini berarti Cypress mensimulasikan alur kerja pengguna secara lengkap, dari awal hingga akhir (misalnya, mengunjungi situs, login, menambahkan barang ke keranjang, lalu *checkout*). Namun, arsitekturnya yang fleksibel juga membuatnya sangat mumpuni untuk **Integration Testing** dan **Component Testing**.
 
-> **Tujuan Utama:** Menyediakan alat *testing* yang cepat, mudah di-setup, dan andal untuk menguji aplikasi web modern dari perspektif pengguna akhir.
+> **Tujuan Utama:** Menyediakan platform pengujian yang cepat, andal, dan *developer-friendly* untuk memvalidasi aplikasi web modern dari perspektif pengguna akhir.
 
 ---
 
-## **Keunggulan Cypress**
+## **Keunggulan Cypress (Mengapa Berbeda?)**
 
-Cypress memiliki beberapa fitur unggulan yang membuatnya berbeda dari *tools* automasi lain seperti Selenium:
+Cypress dirancang untuk mengatasi banyak "penderitaan" yang biasa dialami dengan *tools* pengujian generasi sebelumnya (seperti Selenium). Keunggulannya terletak pada arsitektur uniknya:
 
-* **Arsitektur Modern:** Cypress berjalan langsung di dalam *browser* (pada *run loop* yang sama dengan aplikasi Anda), memberikannya kontrol lebih cepat dan hasil yang lebih andal.
-* **Test Runner Interaktif:** Fitur paling menonjol. Anda bisa melihat perintah dieksekusi secara visual, *real-time*, dan berinteraksi langsung dengan aplikasi Anda saat tes berjalan.
-* **Time Travel:** Memungkinkan Anda untuk "kembali ke masa lalu" dengan melihat *snapshot* dari setiap langkah tes, memudahkan *debugging* saat terjadi kegagalan.
-* **Automatic Waits:** Cypress secara otomatis menunggu elemen muncul di DOM dan perintah dijalankan. Anda tidak perlu menulis perintah `wait` atau `sleep` secara manual, yang membuat tes lebih stabil dan tidak *flaky*.
+* **Arsitektur Modern (In-Browser)**
+    Berbeda dengan Selenium yang beroperasi sebagai *server* eksternal dan mengirim perintah ke *browser* melalui jaringan (JSON Wire Protocol), Cypress beroperasi **langsung di dalam browser**. Ia berjalan pada *run-loop* yang sama dengan aplikasi Anda. Ini memberinya akses *native* ke semua objek, *window*, DOM, dan *event* aplikasi, menghasilkan eksekusi yang lebih cepat dan tes yang jauh lebih stabil.
+
+* **Test Runner Interaktif**
+    Ini adalah fitur andalan Cypress. Saat Anda menjalankan `npx cypress open`, sebuah aplikasi *desktop* akan terbuka. Di sana, Anda bisa melihat daftar *file* tes Anda. Saat Anda menjalankan tes, Anda akan melihat dua panel: di satu sisi adalah aplikasi Anda yang sedang diuji, dan di sisi lain adalah log perintah visual. Anda bisa mengklik perintah mana pun di log untuk melihat *snapshot* aplikasi pada saat itu.
+
+* **Time Travel (Perjalanan Waktu)**
+    Terkait erat dengan Test Runner, fitur "Time Travel" adalah berkah untuk *debugging*. Jika sebuah tes gagal, Anda tidak perlu menebak-nebak. Anda cukup mengarahkan kursor ke setiap langkah perintah di log dan melihat DOM "kembali ke masa lalu". Anda bisa melihat *snapshot* **sebelum** dan **sesudah** sebuah aksi, memudahkan untuk mengidentifikasi mengapa sebuah elemen tidak ditemukan atau mengapa *assertion* gagal.
+
+* **Automatic Waits (Menunggu Otomatis)**
+    Masalah terbesar dalam *automation testing* adalah *flaky tests*—tes yang terkadang lulus dan terkadang gagal tanpa alasan jelas. Ini biasanya terjadi karena skrip mencoba berinteraksi dengan elemen sebelum elemen itu selesai dimuat. Cypress secara cerdas **menunggu secara otomatis** hingga elemen yang Anda perintahkan menjadi tersedia di DOM dan dapat diinteraksi. Anda tidak perlu lagi menulis `wait`, `sleep`, atau `waitForElement` secara manual.
 
 ---
 
 ## **Setup dan Instalasi**
 
-Memulai Cypress sangatlah mudah. Prasyarat utamanya hanyalah **Node.js** yang sudah terinstal di sistem Anda.
+Memulai proyek dengan Cypress sangatlah cepat. Prasyarat utamanya hanyalah memiliki **Node.js** terinstal di komputer Anda.
 
-1.  **Inisialisasi Proyek (jika perlu):**
+1.  **Inisialisasi Proyek Node.js**
+    Jika Anda memulai dari folder kosong, buat file `package.json`:
     ```bash
     npm init -y
     ```
 
-2.  **Install Cypress:**
+2.  **Instal Cypress**
+    Instal Cypress sebagai *dev dependency* (hanya dibutuhkan untuk pengembangan):
     ```bash
     npm install cypress --save-dev
     ```
 
-3.  **Buka Cypress Test Runner:**
+3.  **Buka Cypress Test Runner**
+    Perintah ini adalah cara Anda bekerja dengan Cypress selama pengembangan.
     ```bash
     npx cypress open
     ```
-    Perintah ini akan membuka Test Runner interaktif untuk pertama kalinya dan membuat semua struktur folder yang diperlukan.
+    Saat pertama kali dijalankan, Cypress akan mengonfigurasi proyek Anda dan membuat struktur folder yang disarankan, termasuk `cypress/e2e` di mana Anda akan menyimpan semua *file* tes (yang berekstensi `.cy.js`).
 
-4.  **Jalankan Tes (via Terminal):**
-    Untuk menjalankan tes di *headless mode* (tanpa membuka UI *browser*), Anda bisa menggunakan:
+4.  **Jalankan Tes (Mode Headless)**
+    Untuk menjalankan tes di server CI/CD atau dari terminal tanpa membuka *browser* visual:
     ```bash
     npx cypress run --browser chrome
     ```
 
 ---
 
-## **Perintah Dasar Cypress**
+## **Perintah Dasar & Assertion**
 
-Sintaks Cypress sangat intuitif dan mudah dibaca, menyerupai bahasa alami.
+Sintaks Cypress sangat intuitif. Hampir semua perintah diawali dengan `cy` dan dapat "dirantai" (*chainable*).
 
 | Perintah | Deskripsi |
 | :--- | :--- |
-| **`cy.visit('URL')`** | Membuka halaman web di *browser*. |
-| **`cy.get('selector')`** | Mengambil satu atau lebih elemen berdasarkan *selector* (seperti ID, class, atau atribut). |
-| **`cy.contains('text')`** | Mencari elemen berdasarkan teks yang terlihat di halaman. |
-| **`cy.click()`** | Melakukan aksi klik pada elemen yang dipilih. |
-| **`cy.type('text')`** | Mengetik teks ke dalam sebuah *input field* atau *textarea*. |
+| **`cy.visit('URL')`** | Membuka (mengunjungi) halaman web target di *browser*. |
+| **`cy.get('selector')`** | Mendapatkan satu atau lebih elemen DOM berdasarkan *selector* (CSS, ID, class, dll). |
+| **`cy.contains('text')`** | Mencari elemen berdasarkan teks yang terlihat oleh pengguna. |
+| **`cy.click()`** | Melakukan aksi klik pada elemen yang telah dipilih. |
+| **`cy.type('text')`** | Mengetikkan serangkaian teks ke dalam sebuah *input field*. |
 | **`cy.url()`** | Mendapatkan URL yang sedang aktif di *browser*. |
+| **`.should('assertion')`** | Ini adalah *assertion*. Perintah ini "dirantai" setelah `cy.get()` atau `cy.url()` untuk memverifikasi sebuah kondisi. Contoh: `.should('be.visible')` atau `.should('have.text', 'Selamat Datang')`. |
 
 ---
 
-## **Studi Kasus: Login SauceDemo**
+## **Studi Kasus: Fungsionalitas Login (SauceDemo)**
 
-Berikut adalah contoh *test case* untuk menguji fungsionalitas login di website `saucedemo.com`.
+Berikut adalah contoh *test case* untuk memvalidasi skenario login di situs `saucedemo.com`.
 
-| ID | Test Case | Steps (Langkah-langkah) | Expected Result (Hasil Diharapkan) |
+| ID | Skenario Tes | Langkah-langkah (Steps) | Hasil yang Diharapkan (Expected Result) |
 | :--- | :--- | :--- | :--- |
-| **TC01** | Login dengan username & password valid | 1. Buka halaman login.<br>2. Masukkan username: `standard_user`<br>3. Masukkan password: `secret_sauce`<br>4. Klik tombol login. | Berhasil masuk ke halaman inventory. |
-| **TC02** | Login dengan password salah | 1. Buka halaman login.<br>2. Masukkan username: `standard_user`<br>3. Masukkan password: `wrong_pass`<br>4. Klik tombol login. | Muncul pesan error "Username and password do not match". |
-| **TC03** | Login dengan username kosong | 1. Buka halaman login.<br>2. Kosongkan username.<br>3. Masukkan password: `secret_sauce`<br>4. Klik tombol login. | Muncul pesan error "Username is required". |
+| **TC01** | Login dengan kredensial valid | 1. Buka halaman login.<br>2. Masukkan username: `standard_user`<br>3. Masukkan password: `secret_sauce`<br>4. Klik tombol login. | Pengguna berhasil masuk dan URL terverifikasi mengandung `/inventory.html`. |
+| **TC02** | Login dengan password salah | 1. Buka halaman login.<br>2. Masukkan username: `standard_user`<br>3. Masukkan password: `wrong_pass`<br>4. Klik tombol login. | Pengguna tetap di halaman login. Muncul pesan error "Username and password do not match". |
+| **TC03** | Login dengan username kosong | 1. Buka halaman login.<br>2. Biarkan username kosong.<br>3. Masukkan password: `secret_sauce`<br>4. Klik tombol login. | Pengguna tetap di halaman login. Muncul pesan error "Username is required". |
 
----
+### Contoh Kode Tes (untuk TC01)
 
-## **Contoh Penggunaan**
-
-Berikut adalah contoh sederhana penggunaan Cypress untuk menguji halaman login:
+Sebuah file tes Cypress (misalnya `cypress/e2e/login.cy.js`) akan terlihat seperti ini:
 
 ```javascript
-describe('Login Test', () => {
-    it('should login with valid credentials', () => {
-        cy.visit('https://saucedemo.com');
-        cy.get('input[name="user-name"]').type('standard_user');
-        cy.get('input[name="password"]').type('secret_sauce');
-        cy.get('input[type="submit"]').click();
-        cy.url().should('include', '/inventory.html');
-    });
+describe('Uji Fungsionalitas Login SauceDemo', () => {
+
+  // Blok "beforeEach" berjalan sebelum setiap tes ("it")
+  beforeEach(() => {
+    // 1. Buka halaman login
+    cy.visit('[https://www.saucedemo.com/](https://www.saucedemo.com/)');
+  });
+
+  it('TC01: Berhasil login dengan kredensial valid', () => {
+    // 2. Masukkan username
+    cy.get('[data-test="username"]').type('standard_user');
+    
+    // 3. Masukkan password
+    cy.get('[data-test="password"]').type('secret_sauce');
+    
+    // 4. Klik tombol login
+    cy.get('[data-test="login-button"]').click();
+    
+    // Verifikasi (Assertion):
+    // Memastikan URL mengandung '/inventory.html'
+    cy.url().should('include', '/inventory.html');
+    
+    // Memastikan elemen keranjang belanja terlihat
+    cy.get('.shopping_cart_link').should('be.visible');
+  });
+
+  // Tes lain (TC02, TC03) akan ditulis di sini...
 });
-```
+````
 
-## **Sumber Daya Tambahan**
-
-Untuk mempelajari lebih lanjut tentang Cypress, Anda dapat mengunjungi:
-
-- [Dokumentasi Resmi Cypress](https://docs.cypress.io)
-- [Tutorial Cypress di YouTube](https://www.youtube.com/results?search_query=cypress+tutorial)
-- [Cypress GitHub Repository](https://github.com/cypress-io/cypress)
-
----
+-----
 
 ## **Kesimpulan**
 
-Cypress adalah *framework testing* modern yang digunakan untuk menguji aplikasi web secara *end-to-end*. Dengan instalasi yang mudah dan fitur unggulan seperti Test Runner interaktif, *Time Travel*, dan *automatic waits*, Cypress memudahkan pengujian berbasis UI secara cepat dan efisien.
+Cypress telah merevolusi cara *developer* dan QA melakukan pengujian *end-to-end*. Dengan memprioritaskan pengalaman *developer*, menyediakan *feedback* visual yang instan, dan menghilangkan sumber-sumber ketidakstabilan tes (seperti *flaky tests*), ia secara signifikan mempercepat siklus pengembangan.
 
-> **Pesan Utama:** Cypress menjadi alat yang andal untuk meningkatkan kualitas dan keandalan aplikasi web modern, karena struktur tesnya yang jelas serta perintah intuitif yang memungkinkan pengujian dilakukan seperti perilaku pengguna asli.
+Proses instalasi yang mudah dan sintaks yang intuitif membuatnya mudah diadopsi, sementara fitur-fitur canggihnya (seperti *Time Travel* dan *automatic waits*) membuatnya menjadi alat yang sangat kuat untuk memastikan kualitas dan keandalan aplikasi web modern.
 
----
+-----
 
 ## **Referensi**
 
