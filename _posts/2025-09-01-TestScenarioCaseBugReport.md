@@ -110,4 +110,4 @@ Test Scenario, Test Case, dan Bug Report adalah pilar dari *Quality Assurance*. 
 
 Materi ini dirangkum dari presentasi "Test Scenario, Test Case, dan Bug Report" oleh Kelompok 4 - Sistem Informasi. Presentasi (PPT) lengkap dari materi ini dapat dilihat melalui tautan berikut:
 
-[Lihat Presentasi (PPT)](https.google.com/file/d/1er2wwoA69y6OFqgGZCR4S9YeQEx0rM6z/view?usp=drive_link)
+[Lihat Presentasi (PPT)](https://drive.google.com/file/d/1er2wwoA69y6OFqgGZCR4S9YeQEx0rM6z/view?usp=drive_link)
