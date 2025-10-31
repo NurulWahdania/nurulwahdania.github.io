@@ -372,7 +372,7 @@ Software testing adalah **fondasi kualitas** dalam pengembangan perangkat lunak 
 * [The Internet](https://the-internet.herokuapp.com/) — Website untuk practice manual testing
 * [Restful Booker](https://restful-booker.herokuapp.com/) — API untuk practice API testing
 * [Demo QA](https://demoqa.com/) — Testing practice website dengan berbagai elements
-* [UI Testing Playground](http://uitestingplayground.com/) — Practice automation challenges
+* [UI Testing Playground](https://uitestingplayground.com/) — Practice automation challenges
 
 ---
 
