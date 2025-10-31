@@ -118,6 +118,6 @@ Rencana Pengujian adalah elemen kunci dalam proses *Quality Assurance*. Tanpa pe
 
 ## **Referensi**
 
-Materi ini disarikan dari presentasi “Testing Plan” oleh Kelompok 3 - Sistem Informasi 2023. Presentasi lengkap dapat dilihat melalui tautan berikut:
+Materi ini disarikan dari presentasi “Testing Plan” oleh Kelompok 3 - Sistem Informasi 2023. Presentasi lengkap dapat dilihat melalui tautan berikut
 
 [Lihat Presentasi (PPT)](https://drive.google.com/file/d/1Pjx6n08veg7o6P-4LjazQCGOx29xH-YS/view?usp=drive_link)
