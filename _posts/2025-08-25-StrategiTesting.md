@@ -11,893 +11,368 @@ image: /assets/img/strategi-testing.png
 
 # **Strategi Software Testing**
 
-## **Apa itu Software Testing?**
+Dalam dunia pengembangan perangkat lunak modern, kualitas bukan lagi pilihan—tetapi keharusan. Software testing adalah jantung dari jaminan kualitas, memastikan setiap baris kode, setiap fitur, dan setiap interaksi pengguna bekerja sempurna sebelum produk mencapai tangan pengguna akhir.
 
-**Software Testing** adalah proses sistematis untuk mengevaluasi perangkat lunak dengan tujuan menemukan cacat (*bugs* atau *defects*) dan memastikan produk bekerja sesuai kebutuhan yang telah ditentukan, baik kebutuhan fungsional maupun non-fungsional.
+> **Tujuan Utama:** Menemukan dan memperbaiki bug dalam perangkat lunak **sebelum** produk dirilis ke pengguna akhir untuk memastikan kualitas, keamanan, dan keandalan aplikasi yang optimal.
 
-> **Tujuan Utama:**  
-> Menemukan dan memperbaiki kesalahan dalam perangkat lunak **sebelum** produk dirilis ke pengguna akhir, sehingga memastikan kualitas, keamanan, dan keandalan aplikasi.
+---
+
+## **Pengertian Software Testing**
+
+**Software Testing** adalah proses sistematis dan terstruktur untuk mengevaluasi perangkat lunak guna menemukan kesalahan, memvalidasi fungsionalitas, dan memastikan bahwa produk memenuhi kebutuhan pengguna—baik yang bersifat fungsional maupun non-fungsional.
 
 ### **Mengapa Testing Itu Penting?**
 
-Bayangkan jika aplikasi banking Anda tiba-tiba error saat transfer uang, atau game favorit Anda *crash* di tengah permainan. Inilah yang dicegah oleh testing!
+Bayangkan jika aplikasi perbankan Anda mengalami error saat melakukan transaksi jutaan rupiah, atau game favorit Anda *crash* tepat saat mencapai level tertinggi. Skenario menakutkan ini adalah alasan mengapa testing sangat krusial!
 
-**6 Manfaat Utama Software Testing:**
+#### **6 Manfaat Utama Software Testing**
 
 | Manfaat | Penjelasan | Contoh Nyata |
 |---------|------------|--------------|
-| **Verifikasi & Validasi** | Memastikan software memenuhi spesifikasi dan kebutuhan user | Fitur "Lupa Password" benar-benar mengirim email reset |
-| **Mengurangi Risiko** | Mengidentifikasi masalah sebelum user mengalaminya | Menemukan bug sebelum launch produk |
-| **Efisiensi Biaya** | Memperbaiki bug saat development 10x lebih murah dari setelah rilis | Bug ditemukan saat coding = $100, setelah rilis = $1000+ |
-| **Keamanan** | Menemukan celah keamanan sebelum dieksploitasi hacker | Mencegah SQL Injection, XSS attacks |
-| **User Experience** | Memastikan aplikasi mudah digunakan dan menyenangkan | Navigasi lancar, loading cepat, UI intuitif |
-| **Kepercayaan Stakeholder** | Membuktikan produk stabil dan berkualitas | Investor dan client yakin dengan produk kita |
+| **Verifikasi & Validasi** | Memastikan software memenuhi spesifikasi teknis dan kebutuhan bisnis pengguna | Fitur "Lupa Password" berhasil mengirimkan email reset dengan token yang valid |
+| **Mengurangi Risiko** | Mengidentifikasi masalah kritis sebelum pengguna mengalaminya di production | Bug keamanan ditemukan dan diperbaiki sebelum peluncuran produk ke publik |
+| **Efisiensi Biaya** | Memperbaiki bug saat development 10-100x lebih murah dibanding setelah rilis | Bug yang diperbaiki saat coding = $100, setelah production = $1,000-$10,000 |
+| **Keamanan** | Mengidentifikasi celah keamanan sebelum dieksploitasi oleh pihak tidak bertanggung jawab | Mencegah serangan SQL Injection, Cross-Site Scripting (XSS), dan vulnerability lainnya |
+| **User Experience** | Memastikan aplikasi mudah digunakan, responsif, dan memberikan kepuasan pengguna | Navigasi intuitif, loading cepat (<3 detik), UI yang konsisten di semua perangkat |
+| **Kepercayaan Stakeholder** | Membuktikan kepada investor, klien, dan pengguna bahwa produk berkualitas tinggi | Laporan testing komprehensif meningkatkan kepercayaan untuk investasi lanjutan |
 
-> **Fun Fact:** 
-> Menurut IBM, biaya memperbaiki bug setelah produk rilis bisa **100x lebih mahal** dibanding memperbaikinya saat fase development!
+> 💡 **Fun Fact:** Menurut IBM Systems Sciences Institute, biaya untuk memperbaiki bug setelah produk rilis bisa mencapai **100x lebih mahal** dibanding memperbaikinya selama fase pengembangan!
 
 ---
 
 ## **Posisi Testing dalam SDLC**
 
-Testing bukanlah aktivitas yang berdiri sendiri. Ini adalah fase integral dari **Software Development Life Cycle (SDLC)**, atau Siklus Hidup Pengembangan Perangkat Lunak.
+Testing bukan aktivitas yang berdiri sendiri atau dilakukan di akhir proyek. Ini adalah bagian integral dari **Software Development Life Cycle (SDLC)** yang harus dijalankan di setiap tahap pengembangan.
 
-### **Kapan Testing Dilakukan?**
+### **SDLC Phases & Testing Integration**
 
-```
-SDLC Phases:
-┌─────────────────────────────────────────────────────────────┐
-│  Planning → Analysis → Design → Development → Testing → Deploy  │
-│                          ↓           ↓          ↓           │
-│                      [Unit Test] [Integration] [System]     │
-│                                                              │
-│  Testing dilakukan di SETIAP FASE, bukan hanya di akhir!    │
-└─────────────────────────────────────────────────────────────┘
-```
+1. **Planning** → Requirement review, test strategy planning
+2. **Analysis** → Test case design berdasarkan requirement
+3. **Design** → Architecture testing, design validation
+4. **Development** → Unit testing, code review
+5. **Testing** → Integration, system, dan UAT
+6. **Deployment** → Smoke testing, production monitoring
 
-**Testing Modern: Shift-Left Approach**
-- Testing dimulai dari fase **Planning & Design** (lebih awal = lebih baik!)
-- Developer menulis **Unit Test** saat coding
+### **Testing Modern: Shift-Left Approach**
 
-- **Continuous Testing** di setiap commit (CI/CD)
-- **Acceptance Testing** sebelum deployment
+Pendekatan modern dalam software testing menekankan konsep **"Shift-Left"**—memulai testing lebih awal dalam SDLC:
+
+* Testing dimulai sejak fase **Planning & Requirements** (review untuk ambiguity dan testability)
+* Developer menulis **Unit Tests** bersamaan dengan kode (TDD - Test-Driven Development)
+* **Continuous Testing** terintegrasi di setiap commit melalui CI/CD pipeline
+* **Automated Testing** mengurangi waktu testing hingga 60-80%
+* **Acceptance Testing** dilakukan sebelum deployment untuk validasi final
 
 ---
 
 ## **Software Testing Life Cycle (STLC)**
 
-**STLC** adalah proses sistematis yang diikuti tim Quality Assurance (QA) untuk memastikan pengujian dilakukan secara efektif dan terstruktur. STLC memiliki fase-fase spesifik dengan tujuan dan hasil yang jelas.
+**STLC** adalah kerangka kerja sistematis yang memastikan pengujian dilakukan secara efektif, terstruktur, dan menghasilkan output berkualitas tinggi. STLC memiliki fase-fase yang jelas dengan tujuan dan deliverables spesifik.
 
 ### **Fase-Fase STLC**
 
-```
-Test Planning → Test Design → Test Execution → Reporting
-      ↓              ↓              ↓              ↓
-  Strategi       Skenario       Jalankan       Analisis
-   & Scope       & Data         Testing        & Lapor
-```
+---
 
-### **1. Test Planning (Perencanaan Pengujian)**
+#### **1. Test Planning (Perencanaan Pengujian)**
 
-**Tujuan:** Menentukan strategi dan ruang lingkup pengujian
+**Tujuan:** Menentukan strategi, ruang lingkup, dan sumber daya yang dibutuhkan untuk pengujian yang efektif.
 
 **Aktivitas Utama:**
-- **Membuat Test Strategy** - Tentukan pendekatan testing (manual/automation, tools yang digunakan)
-- **Menentukan Scope** - Apa yang akan diuji dan apa yang tidak
-- **Setup Test Environment** - Persiapkan server, database, browser untuk testing
-- **Assign Resources** - Tentukan siapa mengerjakan apa
-- **Estimasi Timeline** - Berapa lama testing akan berlangsung
-- **Budget Planning** - Estimasi biaya testing
+* **Membuat Test Strategy** → Menentukan pendekatan testing (manual/automation), tools yang akan digunakan, dan metodologi
+* **Menentukan Scope** → Apa yang akan diuji (in-scope) dan apa yang tidak akan diuji (out-of-scope)
+* **Setup Test Environment** → Persiapkan server, database, browser, dan infrastruktur testing lainnya
+* **Resource Assignment** → Tentukan tim testing, roles & responsibilities masing-masing anggota
+* **Timeline Estimation** → Berapa lama setiap fase testing akan berlangsung
+* **Budget Planning** → Estimasi biaya tools, infrastructure, dan human resources
 
 **Output:**
-- Test Plan Document
-- Test Strategy Document
-- Effort Estimation
+* Test Plan Document
+* Test Strategy Document
+* Effort & Cost Estimation
+* Risk Assessment Matrix
 
-**Contoh:**
-> "Kita akan test aplikasi e-commerce dengan 5 tester, menggunakan Selenium untuk automation, fokus pada flow checkout dan payment, estimasi 2 minggu."
+**Contoh Praktis:**
+> "Untuk aplikasi e-commerce, kita akan menggunakan 5 QA testers (3 manual, 2 automation), menggunakan Selenium WebDriver untuk automation, fokus pada flow checkout dan payment gateway, dengan estimasi waktu 2 minggu dan budget $10,000."
 
 ---
 
-### **2. Test Design (Perancangan Pengujian)**
+#### **2. Test Design (Perancangan Pengujian)**
 
-**Tujuan:** Mengubah rencana menjadi skenario pengujian yang detail dan actionable
+**Tujuan:** Mengubah test plan menjadi skenario pengujian yang detail, terukur, dan dapat dieksekusi.
 
 **Aktivitas Utama:**
-- **Menulis Test Cases** - Detail langkah-langkah testing
-- **Membuat Test Data** - Siapkan data dummy (user, produk, transaksi)
-- **Menentukan Expected Results** - Apa hasil yang diharapkan dari setiap test
-- **Requirement Traceability Matrix (RTM)** - Mapping requirement dengan test case
-- **Test Scenario Creation** - Buat skenario end-to-end
+* **Menulis Test Cases** → Langkah-langkah detail untuk setiap skenario testing dengan expected results yang jelas
+* **Membuat Test Data** → Menyiapkan data dummy yang representatif (user accounts, produk, transaksi, dll)
+* **Menentukan Expected Results** → Hasil yang diharapkan dari setiap test case untuk perbandingan dengan actual results
+* **Requirement Traceability Matrix (RTM)** → Mapping setiap requirement dengan test cases terkait
+* **Test Scenario Creation** → Membuat skenario end-to-end yang mencakup happy path dan negative cases
 
 **Output:**
-- Test Cases & Test Scripts
-- Test Data
-- RTM (Requirement Traceability Matrix)
+* Test Cases & Test Scripts (manual & automated)
+* Test Data Sets
+* RTM (Requirement Traceability Matrix)
+* Test Environment Setup Checklist
+
 **Contoh Test Case:**
 
-| Test Case ID | TC_LOGIN_001 |
-|--------------|--------------|
+| Field | Detail |
+|-------|--------|
+| **Test Case ID** | TC_LOGIN_001 |
+| **Module** | Authentication |
 | **Title** | Login dengan kredensial valid |
-| **Precondition** | User sudah terdaftar di sistem |
-| **Steps** | 1. Buka halaman login<br>2. Masukkan email valid<br>3. Masukkan password valid<br>4. Klik tombol Login |
-| **Expected Result** | User berhasil login dan diarahkan ke dashboard |
-| **Test Data** | Email: test@example.com<br>Password: Test123! |
+| **Priority** | High |
+| **Precondition** | • User sudah terdaftar di sistem<br/>• Database berisi user test@example.com<br/>• Browser sudah terbuka |
+| **Test Steps** | 1. Buka halaman login (https://app.example.com/login)<br/>2. Masukkan email: test@example.com<br/>3. Masukkan password: Test123!<br/>4. Klik tombol "Login" |
+| **Expected Result** | • User berhasil login tanpa error<br/>• Redirect ke dashboard dalam <2 detik<br/>• Nama user tampil di header: "Welcome, Test User" |
+| **Test Data** | Email: test@example.com<br/>Password: Test123! |
+| **Test Environment** | Chrome v120, Windows 11, Staging Server |
 
 ---
 
-### **Test Execution (Pelaksanaan Pengujian)**
+#### **3. Test Execution (Pelaksanaan Pengujian)**
 
-**Tujuan:** Menjalankan test cases dan membandingkan hasil aktual dengan hasil yang diharapkan
+**Tujuan:** Menjalankan test cases dan membandingkan hasil aktual dengan hasil yang diharapkan untuk mengidentifikasi defects.
 
 **Aktivitas Utama:**
-- **Execute Test Cases** - Jalankan testing sesuai skenario
-- **Bug Logging** - Catat setiap bug yang ditemukan di bug tracking tool (Jira, Trello)
-- **Regression Testing** - Test ulang fitur lama setelah ada perubahan
-- **Screenshot & Video** - Dokumentasi bug untuk developer
-- **Re-testing** - Test ulang bug yang sudah diperbaiki
+* **Execute Test Cases** → Jalankan testing sesuai skenario yang telah dirancang (manual atau automated)
+* **Bug Logging** → Catat setiap bug yang ditemukan dengan detail (steps to reproduce, severity, priority, screenshots)
+* **Regression Testing** → Test ulang fitur lama setelah ada perubahan kode untuk memastikan tidak ada side effects
+* **Defect Documentation** → Screenshot, video recording, dan log files untuk membantu developer reproduce bug
+* **Re-testing** → Test ulang bug yang sudah diperbaiki oleh developer untuk memastikan fix berhasil
+* **Test Metrics Collection** → Kumpulkan data metrics (pass/fail rate, bug density, test coverage, dll)
+
 **Jenis Testing yang Dilakukan:**
 
-#### **a) Component/Unit Testing**
-- Testing komponen terkecil (fungsi, method, class)
-- Biasanya dilakukan oleh **Developer**
-- Contoh: Test fungsi `calculateDiscount()`
+* **Component/Unit Testing**
+    * Fokus pada pengujian komponen terkecil secara terisolasi (fungsi, metode, kelas)
+    * Dilakukan oleh **Developer** menggunakan testing frameworks
+    * Tools: JUnit (Java), Jest (JavaScript), pytest (Python), NUnit (.NET)
 
-#### **b) Integration Testing**
-- Testing interaksi antar modul/komponen
-- Memastikan API, database, services berkomunikasi dengan benar
-- Contoh: Test koneksi Login Module → Database → Session Management
+* **Integration Testing**
+    * Fokus pada interaksi dan komunikasi antar modul/komponen
+    * Dilakukan oleh **QA Team atau Developer**
+    * Metode: Top-Down, Bottom-Up, Sandwich, Big Bang
+    * Tools: Postman (API), SoapUI, Rest-Assured
 
-#### **c) System Testing**
-- Testing sistem secara keseluruhan (end-to-end)
-- Dilakukan oleh **QA Team**
-- Contoh: Test full flow dari browse produk → checkout → payment → konfirmasi
+* **System Testing**
+    * Pengujian sistem secara keseluruhan (end-to-end) di environment yang mirip production
+    * Dilakukan oleh **QA Team**
+    * Mencakup: Functional, Performance, Security, Compatibility testing
+    * Tools: Selenium, Cypress, TestComplete
 
-#### **d) Acceptance Testing (UAT)**
-- Testing oleh **User/Client** sebelum go-live
-- Memvalidasi apakah sistem memenuhi kebutuhan bisnis
-- Contoh: Client mencoba semua fitur dan memberikan approval
+* **Acceptance Testing (UAT)**
+    * Pengujian oleh **User/Client** untuk validasi sebelum go-live
+    * Fokus pada business requirements dan user satisfaction
+    * Alpha Testing (internal) dan Beta Testing (external)
 
 **Output:**
-- Test Execution Report
-- Bug Reports
-- Test Logs
-**Status Test Case:**
-- **Passed** - Test berhasil, sesuai expected result
-- **Failed** - Test gagal, ditemukan bug
-- **Blocked** - Test tidak bisa dijalankan karena dependency issue
-- **Skipped** - Test dilewati karena alasan tertentu
+* Test Execution Reports (daily/weekly)
+* Bug/Defect Reports dengan severity & priority
+* Test Logs & Screenshots
+* Updated RTM dengan status (Pass/Fail/Blocked)
 
 ---
 
-### **Test Reporting & Analysis (Pelaporan & Analisis)**
+#### **4. Test Reporting & Analysis (Pelaporan & Analisis)**
 
-**Tujuan:** Mengumpulkan, menganalisis, dan melaporkan hasil testing kepada stakeholder
+**Tujuan:** Mengumpulkan, menganalisis, dan melaporkan hasil testing kepada stakeholder untuk decision making.
 
 **Aktivitas Utama:**
-- **Generate Test Metrics** - Statistik testing (pass rate, bug count, dll)
-- **Bug Analysis** - Klasifikasi bug berdasarkan severity & priority
-- **Quality Assessment** - Evaluasi kualitas software
-- **Final Test Report** - Laporan lengkap untuk management
-- **Recommendations** - Saran perbaikan untuk tim development
-**Metrics yang Dilaporkan:**
-
-| Metric | Penjelasan | Contoh |
-|--------|------------|--------|
-| **Test Coverage** | Persentase requirement yang sudah ditest | 95% (190 dari 200 requirements) |
-| **Pass Rate** | Persentase test case yang passed | 85% (170 passed, 30 failed) |
-| **Bug Count** | Total bug yang ditemukan | 45 bugs |
-| **Bug Severity** | Klasifikasi tingkat keparahan bug | Critical: 5, High: 15, Medium: 20, Low: 5 |
-| **Defect Density** | Jumlah bug per 1000 baris kode | 2.5 bugs/KLOC |
-
-**Bug Severity & Priority:**
-
-| Severity | Description | Example |
-|----------|-------------|---------|
-| **Critical** | Aplikasi crash, data loss, security breach | Payment gagal, database terhapus |
-| **High** | Fitur utama tidak berfungsi | Login tidak bisa, checkout error |
-| **Medium** | Fitur minor bermasalah, ada workaround | Filter search tidak akurat |
-| **Low** | Cosmetic issues, typo | Warna tombol salah, typo di label |
+* **Generate Test Metrics** → Statistik testing yang komprehensif (test pass rate, bug count, test coverage, defect density)
+* **Bug Analysis** → Klasifikasi bug berdasarkan severity (Critical/High/Medium/Low) dan priority
+* **Quality Assessment** → Evaluasi kualitas software berdasarkan metrics dan exit criteria
+* **Final Test Report** → Laporan lengkap untuk manajemen dan stakeholder
+* **Recommendations** → Saran perbaikan untuk tim development dan peningkatan proses testing
+* **Lessons Learned** → Dokumentasi best practices dan area improvement untuk project berikutnya
 
 **Output:**
-- Test Summary Report
-- Bug Status Report 
-- Quality Metrics Dashboard
-- Recommendations Document
+* Test Summary Report
+* Bug Status Report & Trend Analysis
+* Quality Metrics Dashboard
+* Test Coverage Report
+* Recommendations Document
+* Sign-off Document (jika testing memenuhi exit criteria)
 
----
-* Mengidentifikasi uji kasus
-* Memperkirakan waktu dan biaya
-* Mengidentifikasi hasil tes dan capaiannya
-* Menugaskan peran dan tanggung jawab
-* Meninjau dan menyetujui rencana testing
+**Key Metrics yang Dilaporkan:**
 
-### **2. Test Design**
-Di sini, rencana diubah menjadi skenario pengujian yang dapat ditindaklanjuti.
-* Mengidentifikasi *test case*
-* Menulis *test case*
-* Membuat data dan skenario pengujian
-* Mengidentifikasi hasil yang diharapkan
-* Meninjau dan memvalidasi hasil
-* Memperbarui dokumen *Requirement Traceability Matrix*
-
-### **3. Test Execution**
-Fase di mana pengujian sebenarnya dilakukan. Penguji menjalankan *test case* yang telah dirancang, membandingkan hasil aktual dengan hasil yang diharapkan, dan mencatat setiap perbedaan sebagai *bug*. Ini bisa mencakup berbagai level seperti:
-* **Komponen Testing:** Pengujian komponen-komponen program, biasanya dilakukan oleh *component developer*.
-* **Integration Testing:** Pengujian terhadap keterhubungan antar sub-sistem atau kelompok komponen yang terintegrasi.
-* **Sistem Testing:** Pengujian berdasarkan spesifikasi sistem, sering oleh tim penguji yang independen.
-* **Acceptance Testing:** Pengujian terakhir sebelum sistem dipakai oleh user, seringkali melibatkan data dari pengguna sistem.
-
-### **4. Pelaporan & Analisis Testing**
-Setelah pengujian selesai, hasilnya dikumpulkan dan dianalisis.
-* **Ringkasan hasil:** Menyajikan jumlah kasus uji yang berhasil, gagal, atau belum dijalankan.
-* **Identifikasi bug:** Mencatat kesalahan yang ditemukan, termasuk tingkat keparahan dan status perbaikannya.
-* **Evaluasi kualitas:** Menilai apakah sistem memenuhi spesifikasi fungsional dan non-fungsional.
-* **Grafik dan data analitik:** Menampilkan tren pengujian, seperti peningkatan jumlah kasus uji yang berhasil atau penurunan jumlah bug.
-* **Rekomendasi:** Memberikan saran untuk peningkatan performa, keamanan, atau stabilitas sistem.
+| Metric | Deskripsi | Target |
+|--------|-----------|--------|
+| **Test Pass Rate** | Persentase test cases yang passed | ≥95% |
+| **Defect Density** | Jumlah bug per 1000 lines of code | <5 bugs/KLOC |
+| **Test Coverage** | Persentase code yang ter-cover oleh tests | ≥80% |
+| **Defect Leakage** | Bug yang lolos ke production | <2% |
+| **Mean Time to Detect (MTTD)** | Rata-rata waktu menemukan bug | <24 hours |
+| **Mean Time to Repair (MTTR)** | Rata-rata waktu fix bug | <48 hours |
 
 ---
 
-## **Klasifikasi Strategi Testing**
+## **Klasifikasi Software Testing**
 
-Strategi testing dapat diklasifikasikan berdasarkan beberapa pendekatan berbeda untuk mencakup semua aspek perangkat lunak. Setiap klasifikasi memiliki fokus dan tujuan yang spesifik.
+Strategi testing dapat diklasifikasikan berdasarkan beberapa dimensi untuk mencakup seluruh aspek perangkat lunak secara komprehensif.
 
-```
-┌─────────────────────────────────────────────────────────┐
-│          4 KLASIFIKASI UTAMA TESTING                    │
-├─────────────────────────────────────────────────────────┤
-│  1. Abstraction Level → Unit/Integration/System/UAT    │
-│  2. Functionality → Functional vs Non-Functional       │
-│  3. Domain Specific → Performance/Security/Usability   │
-│  4. Structure → Black-Box vs White-Box                 │
-└─────────────────────────────────────────────────────────┘
-```
+### **4 Klasifikasi Utama Testing**
+
+1. **Berdasarkan Level Abstraksi** → Unit → Integration → System → UAT
+2. **Berdasarkan Functionality** → Functional vs Non-Functional Testing
+3. **Berdasarkan Domain** → Performance, Security, Usability, Compatibility
+4. **Berdasarkan Structure** → Black-Box vs White-Box vs Grey-Box
 
 ---
 
 ### **1. Berdasarkan Level Abstraksi (Testing Pyramid)**
 
-Klasifikasi ini mengurutkan pengujian dari komponen terkecil hingga sistem secara keseluruhan, membentuk **Testing Pyramid**.
+Klasifikasi ini mengurutkan pengujian dari komponen terkecil hingga sistem secara keseluruhan, membentuk **Testing Pyramid**—konsep yang menekankan lebih banyak test di level bawah (unit) dan lebih sedikit di level atas (UI/E2E).
 
-```
-        ┌─────────────┐
-       │     UAT      │  ← Paling sedikit test, paling lambat
-      ├───────────────┤
-     │ System Testing │
-    ├─────────────────┤
-   │ Integration Test │
-  ├───────────────────┤
- │   Unit Testing    │  ← Paling banyak test, paling cepat
-└────────────────────┘
-```
+#### **Testing Pyramid Hierarchy:**
 
-#### **Unit Testing**
+* **Acceptance Testing (UAT)** → Puncak piramida (paling sedikit tests)
+* **System Testing** → End-to-end testing
+* **Integration Testing** → Testing interaksi antar modul
+* **Unit Testing** → Dasar piramida (paling banyak tests)
 
-**Definisi:** Menguji komponen terkecil dari software secara terpisah (fungsi, method, class).
-
-**Karakteristik:**
-- **Paling cepat** dijalankan (milliseconds)
-- **Scope terkecil** - fokus pada satu fungsi/method
-- **Dilakukan oleh:** Developer
-- **Frequency:** Setiap kali code berubah (automated)
-- **Isolated:** Tidak bergantung pada database, API, file system
-
-**Tools Populer:**
-- Java: **JUnit**, TestNG
-- JavaScript: **Jest**, Mocha, Jasmine
-- Python: **pytest**, unittest
-- C#: **NUnit**, xUnit
-
-**Contoh Kasus:**
-
-```javascript
-// Fungsi yang akan ditest
-function calculateDiscount(price, discountPercent) {
- if (price < 0 || discountPercent < 0) return 0;
- return price * (discountPercent / 100);
-}
-
-// Unit Test
-test('calculateDiscount returns correct value', () => {
- expect(calculateDiscount(100, 10)).toBe(10);
- expect(calculateDiscount(200, 25)).toBe(50);
- expect(calculateDiscount(-100, 10)).toBe(0); // negative price
-});
-```
-
-**Kapan Menggunakan:**
-- Test business logic
-- Test validasi input
-- Test kalkulasi matematis
-- Test transformasi data
+**Mengapa Berbentuk Piramida?**
+* Unit tests lebih cepat, murah, dan mudah di-maintain (70% dari total tests)
+* Integration tests lebih lambat dan kompleks (20% dari total tests)
+* System/E2E tests paling lambat dan mahal (10% dari total tests)
 
 ---
 
-#### **Integration Testing**
+### **2. Berdasarkan Functionality**
 
-**Definisi:** Menguji interaksi dan komunikasi antara dua atau lebih modul/komponen.
+* **Functional Testing**
+    * Menguji "apa yang dilakukan sistem" (what the system does)
+    * Validasi fitur sesuai requirements
+    * Contoh: Login, checkout, payment processing
+    * Tools: Selenium, Appium, TestComplete
 
-**Karakteristik:**
-
-- **Fokus:** Koneksi antar modul
-- **Dilakukan oleh:** Developer atau QA
-- **Mencakup:** API calls, database queries, external services
-- **Lebih lambat** dari unit test tapi lebih cepat dari system test
-
-**Pendekatan Integration Testing:**
-
-| Approach | Deskripsi | Kelebihan | Kekurangan |
-|----------|-----------|-----------|------------|
-| **Big Bang** | Semua modul digabung sekaligus lalu ditest | Cepat untuk sistem kecil | Sulit debug jika error |
-| **Top-Down** | Test dari modul atas ke bawah | Bisa detect masalah arsitektur awal | Butuh stub untuk modul bawah |
-| **Bottom-Up** | Test dari modul bawah ke atas | Modul kritikal ditest duluan | Butuh driver untuk modul atas |
-| **Sandwich** | Kombinasi top-down & bottom-up | Balanced approach | Lebih kompleks |
-
-**Contoh Kasus:**
-
-```python
-# Integration Test: Login Flow
-def test_login_integration():
- # Test: Frontend → Backend → Database → Session
- 
- # 1. User submit login form
- response = client.post('/login', data={
- 'email': 'test@example.com',
- 'password': 'password123'
- })
- 
- # 2. Check if database query works
- assert user_exists_in_db('test@example.com') == True
- 
- # 3. Check if session created
- assert session.get('user_id') is not None
- 
- # 4. Check redirect to dashboard
- assert response.status_code == 302
- assert response.location == '/dashboard'
-```
-
-**Kapan Menggunakan:**
-- Test API integration
-- Test database connections
-- Test third-party services (payment gateway, email service)
-- Test microservices communication
+* **Non-Functional Testing**
+    * Menguji "bagaimana sistem bekerja" (how the system works)
+    * Meliputi: Performance, Security, Usability, Reliability, Scalability
+    * Contoh: Load testing (1000 concurrent users), Security penetration testing
+    * Tools: JMeter, LoadRunner, Burp Suite, OWASP ZAP
 
 ---
 
-#### **System Testing**
+### **3. Berdasarkan Domain Spesifik**
 
-**Definisi:** Menguji sistem perangkat lunak secara keseluruhan sebagai satu kesatuan yang terintegrasi (end-to-end).
+* **Performance Testing**
+    * Load Testing: Mengukur performa di beban normal
+    * Stress Testing: Mengukur breaking point sistem
+    * Spike Testing: Mengukur respon terhadap lonjakan tiba-tiba
+    * Endurance Testing: Mengukur stabilitas dalam waktu lama
+    * Tools: JMeter, Gatling, K6, LoadRunner
 
-**Karakteristik:**
+* **Security Testing**
+    * Vulnerability Scanning, Penetration Testing
+    * Authentication & Authorization testing
+    * SQL Injection, XSS, CSRF testing
+    * Tools: Burp Suite, OWASP ZAP, Nessus, Metasploit
 
-- **Scope:** Seluruh sistem
-- **Environment:** Mirip dengan production
-- **Dilakukan oleh:** QA Team (independen)
-- **Berdasarkan:** System Requirements Specification (SRS)
+* **Usability Testing**
+    * User experience evaluation
+    * Accessibility compliance (WCAG)
+    * Navigation & workflow testing
+    * Tools: UserTesting, Hotjar, Maze
 
-**Jenis System Testing:**
-
-| Jenis | Tujuan | Contoh |
-|-------|--------|--------|
-| **Functional Testing** | Test semua fitur sesuai requirement | Test checkout flow lengkap |
-| **Performance Testing** | Test kecepatan & stabilitas | Load test 1000 concurrent users |
-| **Security Testing** | Test keamanan sistem | Penetration testing, vulnerability scan |
-| **Usability Testing** | Test kemudahan penggunaan | User bisa checkout dalam 3 klik |
-| **Compatibility Testing** | Test di berbagai platform | Chrome, Firefox, Safari, Mobile |
-
-**Contoh Skenario E-commerce:**
-
-```
-Test Case: Complete Purchase Flow
-
- 1. User browse produk 
- 2. User add produk ke cart 
- 3. User apply coupon code 
- 4. User proceed to checkout 
- 5. User isi shipping address 
- 6. User pilih payment method 
- 7. User confirm & pay 
- 8. System send confirmation email 
- 9. System update inventory 
- 10. User receive order tracking number 
-
- Expected: Order successfully placed
-```
-
-**Kapan Menggunakan:**
-- Sebelum UAT (User Acceptance Testing)
-- Test business workflows lengkap
-- Regression testing setelah major update
+* **Compatibility Testing**
+    * Browser compatibility (Chrome, Firefox, Safari, Edge)
+    * OS compatibility (Windows, macOS, Linux, iOS, Android)
+    * Device compatibility (mobile, tablet, desktop)
+    * Tools: BrowserStack, Sauce Labs, LambdaTest
 
 ---
 
-#### **Acceptance Testing (UAT)**
-
-**Definisi:** Testing oleh user/client untuk validasi apakah sistem memenuhi kebutuhan bisnis sebelum go-live.
-
-**Karakteristik:**
-
-- **Dilakukan oleh:** End User, Client, Stakeholder
-- **Tujuan:** Final approval sebelum production
-- **Berdasarkan:** User Requirements, Business Scenarios
-- **Fokus:** User experience & business value
-
-**Jenis UAT:**
-
-| Jenis | Deskripsi | Contoh |
-|-------|-----------|--------|
-| **Alpha Testing** | Testing oleh internal team sebelum rilis | Internal employees test aplikasi |
-| **Beta Testing** | Testing oleh selected users sebelum public release | 100 users test aplikasi mobile baru |
-| **Contract Acceptance** | Testing berdasarkan kontrak dengan client | Client verify semua fitur di kontrak ada |
-| **Regulation Acceptance** | Testing compliance dengan regulasi | Banking app comply dengan BI regulations |
-
-**Contoh UAT Scenario:**
-
-```
-Scenario: HR Manager merekrut karyawan baru
-
-Given: HR Manager login ke sistem
-When: HR Manager buat job posting baru
- And: Candidates submit applications
- And: HR Manager review & shortlist candidates
- And: HR Manager schedule interviews
- And: HR Manager offer job to selected candidate
-Then: Candidate receive offer letter via email
- And: Sistem create employee profile
- And: Sistem notify IT untuk setup account
-
- Acceptance Criteria:
-- Proses selesai dalam 5 langkah
-- Email notifikasi terkirim otomatis
-- Employee data masuk ke database
-```
-
----
-
-### **Berdasarkan Fungsi (What vs How)**
-
-Klasifikasi ini membagi testing berdasarkan **apa yang dilakukan** sistem (functional) vs **bagaimana** sistem melakukannya (non-functional).
-
-#### **Functional Testing**
-
-**Definisi:** Menguji apakah software berfungsi sesuai dengan persyaratan fungsionalnya.
-**Fokus:** **WHAT** the system does
-- Apakah fitur bekerja sesuai requirement?
-- Apakah output sesuai dengan input yang diberikan?
-- Apakah user bisa menyelesaikan task?
-**Karakteristik:**
-
-- **Based on:** Functional Requirements Document
-- **Focus:** Features & Functions
-- **Approach:** Biasanya Black-Box Testing
-- **Perspective:** User-centric
-**Contoh Test Cases:**
-
-| Feature | Test Case | Expected Result |
-|---------|-----------|-----------------|
-| **Login** | User login dengan kredensial valid | Redirect ke dashboard |
-| **Search** | User search "laptop" | Show relevant products |
-| **Add to Cart** | User add product to cart | Cart count +1, total price updated |
-| **Payment** | User pay dengan credit card | Payment success, order created |
-| **Forgot Password** | User request reset password | Email with reset link sent |
-
-**Tools:**
-- Selenium, Cypress (Web automation)
-- Appium (Mobile automation)
-- Postman (API testing)
-- Katalon Studio
-
----
-
-#### **Non-Functional Testing**
-
-**Definisi:** Menguji **bagaimana** sistem bekerja, bukan apa yang dilakukan (performance, security, usability, reliability).
-
-**Fokus:** **HOW** the system works
-- Seberapa cepat sistemnya?
-- Seberapa aman sistemnya?
-- Seberapa mudah digunakan?
-- Seberapa stabil sistemnya?
-
-**Jenis-jenis Non-Functional Testing:**
-
-```
-Non-Functional Testing
- Performance Testing
- Load Testing
- Stress Testing
- Spike Testing
- Endurance Testing
- Security Testing
- Penetration Testing
- Vulnerability Scanning
- Security Auditing
- Usability Testing
- Compatibility Testing
- Reliability Testing
- Scalability Testing
-```
-
----
-
-### **3. Berdasarkan Domain (Specific Test Types)**
-
-Ini adalah jenis pengujian non-fungsional yang lebih spesifik dan mendalam.
-
-#### **Performance Testing**
-
-**Definisi:** Menguji kinerja sistem dari segi kecepatan, responsivitas, dan stabilitas di bawah beban tertentu.
-
-**4 Jenis Performance Testing:**
-
-| Jenis | Tujuan | Skenario | Tools |
-|-------|--------|----------|-------|
-| **Load Testing** | Test sistem dengan beban normal | 1000 concurrent users | JMeter, LoadRunner |
-| **Stress Testing** | Test batas maksimal sistem | Naikkan user sampai crash | Gatling, K6 |
-| **Spike Testing** | Test lonjakan tiba-tiba | Flash sale, viral moment | JMeter |
-| **Endurance Testing** | Test stabilitas jangka panjang | Run 24/7 selama seminggu | LoadRunner |
-
-**Metrics yang Diukur:**
-- **Response Time** - Berapa lama server respond? (Target: < 2 detik)
-- **Throughput** - Berapa request per detik? (Target: 1000 req/s)
-- **CPU Usage** - Berapa % CPU terpakai? (Target: < 70%)
-- **Memory Usage** - Berapa RAM terpakai? (Target: < 80%)
-- **Error Rate** - Berapa % request yang error? (Target: < 1%)
-
-**Contoh Test Scenario:**
-
-```
-Load Test: Flash Sale 12.12
-
-Setup:
-- 5000 concurrent users
-- Duration: 30 minutes
-- Ramp-up: 1000 users every 5 minutes
-
-Metrics:
-   Response time < 3 seconds
-  Error rate < 0.5%
-  Server uptime 100%
-  Database connection stable
-
-Result:
-  - Avg response time: 1.8s 
-- Peak traffic: 10,000 req/min 
-- 0 crashes 
--  Error rate: 0.2% 
-```
-
----
-
-#### **Security Testing**
-
-**Definisi:** Mengidentifikasi celah keamanan dan melindungi data dari ancaman eksternal dan internal.
-
-**Tujuan:**
-- Protect data dari unauthorized access
-- Prevent hacking & cyber attacks
-- Ensure compliance (GDPR, ISO 27001)
-- Protect user privacy
-**OWASP Top 10 Security Risks:**
-
-| Rank | Vulnerability | Contoh Attack | Prevention |
-|------|---------------|---------------|------------|
-| 1 |
-
-**Broken Access Control** | User biasa akses admin panel | Implement proper authorization |
-| 2 |
-
-**Cryptographic Failures** | Password disimpan plain text | Use bcrypt, encryption |
-| 3 |
-
-**Injection** | SQL Injection, XSS | Input validation, parameterized queries |
-| 4 |
-
-**Insecure Design** | Tidak ada rate limiting | Security by design |
-| 5 |
-
-**Security Misconfiguration** | Default password masih aktif | Change default settings |
-
-**Jenis Security Testing:**
-
-```
-Security Testing
- Vulnerability Scanning
- Tools: Nessus, OpenVAS
- Penetration Testing (Ethical Hacking)
- Tools: Metasploit, Burp Suite
- Security Auditing
- Review code, config, logs
- Risk Assessment
- Identify & prioritize threats
-```
-**Contoh Test Cases:**
-
-| Test Case | Attack Type | Expected Result |
-|-----------|-------------|-----------------|
-| SQL Injection Test | Input: `' OR '1'='1` | Query rejected, error logged |
-| XSS Attack Test | Input: `<script>alert('XSS')</script>` | Script sanitized, not executed |
-| Brute Force Test | 100 failed login attempts | Account locked after 5 attempts |
-| Session Hijacking | Steal session cookie | Session invalid after logout |
-
----
-
-#### **Usability Testing**
-
-**Definisi:** Mengevaluasi kemudahan penggunaan software dari perspektif end user.
-
-**Fokus:**
-- **Ease of Use** - Apakah user bisa gunakan tanpa training?
-- **Learnability** - Seberapa cepat user bisa belajar?
-- **Efficiency** - Apakah user bisa selesaikan task dengan cepat?
-- **Memorability** - Apakah user ingat cara pakainya?
-- **Satisfaction** - Apakah user puas dengan experience?
-
-**Metode Usability Testing:**
-
-| Metode | Deskripsi | Kapan Digunakan |
-|--------|-----------|-----------------|
-| **Hallway Testing** | Minta random orang coba app | Quick feedback, early stage |
-| **A/B Testing** | Compare 2 versi design | Optimize conversion rate |
-| **Eye Tracking** | Track kemana user lihat | Optimize UI layout |
-| **Think Aloud** | User explain apa yang mereka pikir | Understand user mental model |
-| **Survey** | User isi questionnaire | Large scale feedback |
-
-**5 Second Test:**
-```
-Show landing page selama 5 detik
-> Close page
- > Ask: Apa yang kamu ingat?
- > Good UX: User ingat key message
-```
-**Task Success Metrics:**
-
-| Metric | Formula | Good Score |
-|--------|---------|------------|
-| **Task Success Rate** | (Completed tasks / Total tasks) × 100% | > 80% |
-| **Time on Task** | Average time to complete task | < Target time |
-| **Error Rate** | (Errors / Total attempts) × 100% | < 5% |
-| **Satisfaction Score** | Average rating (1-5 scale) | > 4.0 |
-
----
-
-### **Berdasarkan Struktur (The "Box" Approach)**
-
-Klasifikasi berdasarkan tingkat pengetahuan tester tentang internal sistem.
-
-```
-
- Black Box Gray Box White Box 
- 
- No Code Partial Full Code 
- Knowledge Knowledge Knowledge 
- 
- QA Tester QA + Dev Developer 
-
-```
-
-#### **Black-Box Testing**
-
-**Definisi:** Tester **TIDAK tahu** struktur internal atau kode program. Fokus pada input-output.
-
-**Karakteristik:**
-
-- **Perspective:** External (User perspective)
-- **Focus:** Functionality, not implementation
-- **Who:** QA Tester (tidak perlu coding skill)
-- **Based on:** Requirements & Specifications
-**Teknik Black-Box Testing:**
-
-| Teknik | Deskripsi | Contoh |
-|--------|-----------|--------|
-| **Equivalence Partitioning** | Bagi input ke dalam grup valid/invalid | Age: <0 (invalid), 0-120 (valid), >120 (invalid) |
-| **Boundary Value Analysis** | Test nilai batas | Test dengan age: -1, 0, 1, 119, 120, 121 |
-| **Decision Table** | Test kombinasi kondisi | Login: emailpassword → success |
-| **State Transition** | Test perubahan state | Order: pending → paid → shipped → delivered |
-| **Error Guessing** | Guess kemungkinan error | User mungkin input emoji di email field |
-
-**Kelebihan:**
-- Tidak butuh knowledge tentang code
-- Test dari user perspective (realistic)
-- Bisa dilakukan oleh non-developer
-- Cocok untuk large-scale functional testing
-**Kekurangan:**
-- Tidak guarantee 100% code coverage
-- Sulit detect hidden bugs di logic
-- Test cases mungkin incomplete
-**Contoh:**
-
-```
-Black-Box Test: Login Form
-
-Input: email, password
-Output: Success/Error message
-
-Test Cases:
-
- Email Password Expected 
-
- valid@test.com valid123 Login OK 
- invalid valid123 Email error
- valid@test.com wrong Pass error 
- (empty) valid123 Required 
- test@test.com (empty) Required 
-
- Tester TIDAK perlu tahu bagaimana sistem validasi bekerja
-```
-
----
-
-#### **White-Box Testing**
-
-**Definisi:** Tester **TAHU** struktur internal, kode, algoritma, dan logic program.
-
-**Karakteristik:**
-
-- **Perspective:** Internal (Developer perspective)
-- **Focus:** Code quality, logic flow, coverage
-- **Who:** Developer atau QA dengan coding skill
-- **Based on:** Source code & architecture
-**Teknik White-Box Testing:**
-
-| Teknik | Deskripsi | Contoh |
-|--------|-----------|--------|
-| **Statement Coverage** | Setiap statement di-execute minimal 1x | Test semua lines of code |
-| **Branch Coverage** | Setiap branch (if/else) di-test | Test both true & false conditions |
-| **Path Coverage** | Setiap possible path di-test | Test all combinations |
-| **Condition Coverage** | Setiap kondisi di-test | if (A && B) → test all combinations |
-| **Loop Testing** | Test loop dengan berbagai iterasi | Loop 0x, 1x, 2x, max, max+1 |
-
-**Code Coverage Metrics:**
-
-```
-Function calculateGrade(score) {
- if (score >= 90) { ← Branch 1
- return "A";
- } else if (score >= 80) { ← Branch 2
- return "B";
- } else if (score >= 70) { ← Branch 3
- return "C";
- } else { ← Branch 4
- return "F";
- }
-}
-
-Test Cases for 100% Branch Coverage:
- calculateGrade(95) → "A" (Branch 1)
- calculateGrade(85) → "B" (Branch 2)
- calculateGrade(75) → "C" (Branch 3)
- calculateGrade(60) → "F" (Branch 4)
-```
-**Kelebihan:**
-- High code coverage
-- Detect hidden bugs di logic
-- Optimize & improve code quality
-- Find security vulnerabilities
-**Kekurangan:**
-- Butuh deep programming knowledge
-- Time-consuming untuk complex systems
-- Tidak test user experience
-- Expensive (butuh skilled developers)
-**Tools:**
-- **Coverage Tools:** JaCoCo (Java), Coverage.py (Python), Istanbul (JavaScript)
-- **Static Analysis:** SonarQube, ESLint, Pylint
-- **Code Review:** CodeClimate, Codacy
-
----
-
-#### **Gray-Box Testing** (Bonus)
-
-**Definisi:** Kombinasi Black-Box dan White-Box. Tester punya **partial knowledge** tentang internal system.
-
-**Karakteristik:**
-
-- **Mix of:** External + Internal view
-- **Knowledge:** Database schema, API docs, architecture
-- **Who:** QA dengan technical background
-- **Use case:** Integration testing, database testing
-**Contoh:**
-```
-Test: User Registration
-
-Black-Box Part:
-- Fill registration form
-- Click submit
-- Check success message
-
-Gray-Box Part (dengan akses database):
-- Verify data masuk ke DB 
-- Check password encrypted (not plain text) 
-- Check email verification token generated 
-
-White-Box Part (tidak dilakukan):
-- Tidak perlu review encryption algorithm code
-```
-
----
+### **4. Berdasarkan Structure (Knowledge Level)**
+
+* **Black-Box Testing**
+    * Tester tidak perlu tahu internal code/structure
+    * Fokus pada input-output behavior
+    * Dilakukan oleh QA Team
+    * Teknik: Equivalence Partitioning, Boundary Value Analysis, Decision Table
+
+* **White-Box Testing**
+    * Tester perlu memahami internal code structure
+    * Fokus pada code coverage dan logic paths
+    * Dilakukan oleh Developer
+    * Teknik: Statement Coverage, Branch Coverage, Path Coverage
+
+* **Grey-Box Testing**
+    * Kombinasi Black-Box dan White-Box
+    * Tester punya partial knowledge tentang internal structure
+    * Ideal untuk integration dan system testing
 
 ---
 
 ## **Kesimpulan**
 
-Software testing adalah **fondasi kualitas** dalam pengembangan perangkat lunak modern. Ini bukan hanya tentang menemukan bug, tetapi tentang:
-- **Membangun kepercayaan** stakeholder dan user
-- **Menghemat biaya** dengan mencegah bug di production
-- **Meningkatkan user experience** dan kepuasan pelanggan
-- **Menjamin keamanan** dan melindungi data
-- **Memastikan kualitas** produk yang reliable
+Software testing adalah **fondasi kualitas** dalam pengembangan perangkat lunak modern. Ini bukan hanya tentang menemukan bug, tetapi tentang membangun produk yang:
 
-### **Key Takeaways**
+✅ **Reliable** → Bekerja konsisten tanpa error  
+✅ **Secure** → Melindungi data dan privacy pengguna  
+✅ **Performant** → Cepat dan responsif di semua kondisi  
+✅ **User-Friendly** → Mudah digunakan dan memberikan pengalaman positif  
+✅ **Maintainable** → Mudah di-update dan di-scale untuk kebutuhan masa depan  
 
-| Aspek | Poin Penting |
-|-------|--------------|
-| **STLC** | Testing punya siklus terstruktur: Planning → Design → Execution → Reporting |
-| **Test Pyramid** | Banyak unit test, sedikit UI test (cepat & efisien) |
-| **Klasifikasi** | 4 dimensi: Level, Fungsi, Domain, Struktur |
-| **Balance** | Combine Black-Box (user view) & White-Box (code view) |
-| **Continuous** | Testing bukan fase terakhir, tapi ongoing process |
+### **Golden Rules of Testing**
 
-### **Best Practices**
-
-```
- Golden Rules of Testing
-
-1. Start testing EARLY (shift-left)
-2. Automate REPETITIVE tests
-3. Write CLEAR test cases
-4. Test with REAL data scenarios
-5. Document EVERYTHING
-6. Regression test setelah EVERY change
-7. Collaborate dengan DEVELOPERS
-8. Keep learning & UPDATE skills
-```
-
-### **Next Steps untuk Belajar Testing**
-
-| Level | Learning Path | Resources |
-|-------|---------------|-----------|
-| **Beginner** | Manual testing basics, test case writing | ISTQB Foundation |
-| **Intermediate** | Automation tools (Selenium, Cypress) | Udemy courses |
-| **Advanced** | Performance testing, Security testing | JMeter, OWASP |
-| **Expert** | Test strategy, DevOps integration | CI/CD, Jenkins |
-
-> Remember: 
-> "Testing shows the presence, not the absence of bugs." - Edsger Dijkstra
-> 
-> Tapi dengan strategi testing yang tepat, kita bisa **minimize risk** dan **maximize quality**! 
+📋 **Start Early** → Mulai testing dari fase requirements (shift-left)  
+🤖 **Automate Wisely** → Otomasi test yang repetitif dan time-consuming  
+📝 **Document Everything** → Test cases, bugs, dan test results harus terdokumentasi  
+🔄 **Regression is Key** → Selalu jalankan regression testing setelah setiap perubahan  
+👥 **Collaborate** → QA dan Developer harus bekerja sama sejak awal  
+📊 **Measure & Improve** → Track metrics dan continuously improve proses testing  
+🎯 **Think Like Users** → Test dengan mindset pengguna nyata, bukan hanya happy path  
+🔐 **Security First** → Security testing harus menjadi prioritas, bukan afterthought  
 
 ---
 
 ## **Referensi & Resources**
 
-### **Sumber Materi**
-Materi ini dirangkum dari presentasi “Strategi Testing” oleh Kelompok 1 - Sistem Informasi 2023. Presentasi (PPT) lengkap dari materi ini dapat dilihat melalui tautan berikut:
-**[Lihat Presentasi (PPT)](https://drive.google.com/file/d/1bNFmdW8ePz_z0VM0660SZU4meSBaxc9c/view?usp=drive_link)**
+### 📚 **Buku Rekomendasi**
+* *"Software Testing Fundamentals: Methods and Metrics"* — Marnie L. Hutcheson
+* *"The Art of Software Testing, 3rd Edition"* — Glenford J. Myers
+* *"Agile Testing: A Practical Guide for Testers"* — Lisa Crispin & Janet Gregory
+* *"Lessons Learned in Software Testing"* — Cem Kaner, James Bach, Bret Pettichord
 
-### **Rekomendasi Belajar Lebih Lanjut**
+### 🌐 **Online Learning Resources**
+* [ISTQB Certification](https://www.istqb.org/) — International certification untuk software testing
+* [Test Automation University](https://testautomationu.applitools.com/) — Free courses tentang test automation
+* [Ministry of Testing](https://www.ministryoftesting.com/) — Community & resources untuk testers
+* [Guru99 Testing Tutorials](https://www.guru99.com/software-testing.html) — Comprehensive testing tutorials
 
-#### **Books**
-- *"Software Testing Fundamentals"* - Rex Black
-- *"The Art of Software Testing"* - Glenford Myers
-- *"Agile Testing"* - Lisa Crispin & Janet Gregory
+### 🛠️ **Tools Berdasarkan Kategori**
 
-#### **Online Resources**
-- [ISTQB Certification](https://www.istqb.org/) - International standard for testing
-- [Test Automation University](https://testautomationu.applitools.com/) - Free courses
-- [Ministry of Testing](https://www.ministryoftesting.com/) - Testing community
+**Manual Testing:**
+* TestRail — Test case management
+* Zephyr — Test management untuk Jira
+* qTest — Enterprise test management
 
-#### **Tools untuk Dicoba**
-- **Manual Testing:** TestRail, Zephyr, qTest
-- **Automation:** Selenium, Cypress, Playwright
-- **Performance:** JMeter, Gatling, K6
-- **Security:** OWASP ZAP, Burp Suite
-- **API Testing:** Postman, SoapUI, REST Assured
+**Test Automation:**
+* Selenium — Web automation (open-source)
+* Cypress — Modern web testing framework
+* Appium — Mobile automation (iOS & Android)
+* Playwright — Cross-browser automation
 
-#### **Practice Platforms**
-- [The Internet](https://the-internet.herokuapp.com/) - Practice web automation
-- [Restful Booker](https://restful-booker.herokuapp.com/) - Practice API testing
-- [OWASP Juice Shop](https://owasp.org/www-project-juice-shop/) - Practice security testing
+**Performance Testing:**
+* JMeter — Open-source load testing
+* Gatling — Scala-based performance tool
+* K6 — Modern load testing (JavaScript)
+
+**API Testing:**
+* Postman — API testing & collaboration
+* SoapUI — API functional testing
+* Rest-Assured — Java library untuk REST API testing
+
+**CI/CD Integration:**
+* Jenkins — Open-source automation server
+* GitLab CI/CD — Integrated CI/CD pipeline
+* GitHub Actions — Workflow automation
+
+### 🎯 **Practice Platforms**
+* [The Internet](https://the-internet.herokuapp.com/) — Website untuk practice manual testing
+* [Restful Booker](https://restful-booker.herokuapp.com/) — API untuk practice API testing
+* [Demo QA](https://demoqa.com/) — Testing practice website dengan berbagai elements
+* [UI Testing Playground](http://uitestingplayground.com/) — Practice automation challenges
 
 ---
 
@@ -905,84 +380,118 @@ Materi ini dirangkum dari presentasi “Strategi Testing” oleh Kelompok 1 - Si
 
 <details>
 <summary><strong>Q: Kapan waktu terbaik untuk mulai testing?</strong></summary>
-<br>
-<b>A:</b> Seawal mungkin! Di fase <b>Requirements & Design</b> sudah bisa:
-<ul>
- <li>Review requirements untuk ambiguity</li>
- <li>Membuat test strategy</li>
- <li>Menulis test cases</li>
-</ul>
-Konsep "Shift-Left Testing" menekankan testing dimulai sejak awal SDLC.
+
+**A:** Seawal mungkin! Konsep **"Shift-Left Testing"** menekankan testing dimulai sejak awal SDLC:
+
+* **Fase Requirements:** Review requirement untuk ambiguity dan testability
+* **Fase Design:** Architecture review dan design validation
+* **Fase Development:** Unit testing dan code review
+* **Fase Testing:** Integration, system, dan UAT
+
+Semakin awal bug ditemukan, semakin murah biaya perbaikannya. Bug yang ditemukan di fase requirements 100x lebih murah dibanding bug di production.
+
 </details>
 
 <details>
-<summary><strong>Q: Berapa persentase test coverage yang ideal?</strong></summary>
-<br>
-<b>A:</b> Tidak ada angka magic, tapi guideline umum:
-<ul>
- <li><b>Unit Test:</b> 70-80% code coverage</li>
- <li><b>Integration Test:</b> Cover semua critical paths</li>
- <li><b>E2E Test:</b> Cover main user journeys</li>
-</ul>
-<b>Quality > Quantity.</b> Lebih baik 50% coverage dengan test berkualitas daripada 100% coverage dengan test yang buruk.
+<summary><strong>Q: Berapa persentase ideal test automation dalam project?</strong></summary>
+
+**A:** Tidak ada angka pasti yang cocok untuk semua project, tetapi sebagai guideline umum:
+
+* **Unit Tests:** 70% (otomasi penuh)
+* **Integration Tests:** 20% (otomasi penuh)
+* **System/E2E Tests:** 10% (kombinasi manual & otomasi)
+
+**Yang harus diotomasi:**
+* Regression tests yang dijalankan berulang kali
+* Smoke tests untuk build verification
+* Performance & load tests
+* API tests
+
+**Yang lebih baik manual:**
+* Exploratory testing
+* Usability testing
+* Ad-hoc testing untuk fitur baru
+
 </details>
 
 <details>
-<summary><strong>Q: Manual testing vs Automation testing, mana lebih baik?</strong></summary>
-<br>
-<b>A:</b> Keduanya penting! Gunakan sesuai kebutuhan:
+<summary><strong>Q: Apa perbedaan Severity dan Priority dalam bug reporting?</strong></summary>
 
-<table>
-<tr>
-<th>Manual Testing</th>
-<th>Automation Testing</th>
-</tr>
-<tr>
-<td> Exploratory testing<br> Usability testing<br> Ad-hoc testing<br> One-time tests</td>
-<td> Regression testing<br> Load testing<br> Repetitive tests<br> CI/CD integration</td>
-</tr>
-</table>
+**A:** 
 
-<b>Best approach:</b> Kombinasi keduanya (Hybrid Testing)
+**Severity** → Seberapa besar dampak teknis bug terhadap sistem (ditetapkan oleh QA)
+* Critical: Sistem crash, data loss
+* High: Fitur utama tidak berfungsi
+* Medium: Fitur minor tidak berfungsi
+* Low: Typo, UI minor issues
+
+**Priority** → Seberapa cepat bug harus diperbaiki (ditetapkan oleh Product Owner/Manager)
+* P0: Fix immediately (blocker)
+* P1: Fix sebelum release
+* P2: Fix dalam sprint berikutnya
+* P3: Fix kapanpun ada waktu
+
+**Contoh:**
+* Bug typo di homepage (Severity: Low, Priority: High) → Karena homepage adalah first impression
+* Bug di fitur admin yang jarang dipakai (Severity: High, Priority: Low) → Impact besar tapi user sedikit
+
 </details>
 
 <details>
-<summary><strong>Q: Apa skill yang dibutuhkan untuk jadi QA/Tester?</strong></summary>
-<br>
-<b>A:</b> 
-<br><br>
-<b>Technical Skills:</b>
-<ul>
- <li>Test case writing</li>
- <li>Bug reporting</li>
- <li>Basic programming (untuk automation)</li>
- <li>SQL (untuk database testing)</li>
- <li>Tools: Jira, Selenium, Postman</li>
-</ul>
+<summary><strong>Q: Berapa lama waktu ideal untuk testing dalam SDLC?</strong></summary>
 
-<b>Soft Skills:</b>
-<ul>
- <li>Attention to detail</li>
- <li>Analytical thinking</li>
- <li>Communication</li>
- <li>Critical thinking</li>
- <li>Patience & persistence</li>
-</ul>
+**A:** Umumnya testing memakan **20-40% dari total project timeline**, tergantung kompleksitas:
+
+* **Simple Project:** 20-25% (2 minggu development = 3-5 hari testing)
+* **Medium Project:** 30-35% (1 bulan development = 10-14 hari testing)
+* **Complex Project:** 35-40% (3 bulan development = 1-1.5 bulan testing)
+
+**Breakdown waktu testing:**
+* Test Planning & Design: 20%
+* Test Execution: 50%
+* Bug Fixing & Re-testing: 20%
+* Test Reporting: 10%
+
 </details>
 
 <details>
-<summary><strong>Q: Bagaimana prioritas testing jika waktu terbatas?</strong></summary>
-<br>
-<b>A:</b> Gunakan <b>Risk-Based Testing</b>:
-<ol>
- <li><b>High Priority:</b> Core functionality (login, payment, checkout)</li>
- <li><b>Medium Priority:</b> Secondary features (search, filters)</li>
- <li><b>Low Priority:</b> Nice-to-have features (animations, tooltips)</li>
-</ol>
+<summary><strong>Q: Bagaimana cara mengukur efektivitas testing?</strong></summary>
 
-<b>Focus on:</b> Features yang paling sering digunakan user + features yang paling critical untuk bisnis
+**A:** Gunakan **Test Metrics** untuk mengukur efektivitas:
+
+**Quality Metrics:**
+* Defect Density (bugs per 1000 lines of code)
+* Defect Removal Efficiency (% bug found before production)
+* Test Coverage (% code covered by tests)
+
+**Productivity Metrics:**
+* Test Execution Rate (test cases per day)
+* Bug Detection Rate (bugs found per week)
+* Mean Time to Detect (MTTD) & Mean Time to Repair (MTTR)
+
+**Process Metrics:**
+* Test Plan Effectiveness
+* Requirement Traceability Coverage
+* Test Automation ROI
+
+**Target Ideal:**
+* Test Coverage ≥ 80%
+* Defect Leakage < 2%
+* Test Pass Rate ≥ 95%
+
 </details>
 
 ---
 
-*"Quality is not an act, it is a habit." - Aristotle*
+## **Materi Presentasi**
+
+Materi lengkap dari pembahasan "Strategi Software Testing" ini dapat diakses melalui presentasi PowerPoint berikut:
+
+📊 **[Download Presentasi (PPT)](https://drive.google.com/file/d/1YiN3oNnXvhQmShckutGpIXPgNi7Ci-vi/view?usp=sharing)**
+
+Presentasi ini mencakup diagram, flowchart, dan contoh praktis yang akan membantu Anda memahami konsep testing secara lebih visual dan interaktif.
+
+---
+
+**Terima kasih telah membaca! Happy Testing! 🚀**
+

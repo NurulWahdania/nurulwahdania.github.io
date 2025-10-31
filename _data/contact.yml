@@ -2,17 +2,21 @@
 
 - type: github
   icon: "fab fa-github"
+  url: 'https://github.com/NurulWahdania'
 
-- type: twitter
-  icon: "fa-brands fa-x-twitter"
+# - type: twitter
+#   icon: "fa-brands fa-x-twitter"
+#   url: 'https://twitter.com/J4ck_3ly54' 
+
+- type: instagram
+  icon: "fa-brands fa-instagram"
+  url: 'https://www.instagram.com/nurulwahdania_82/'
 
 - type: email
   icon: "fas fa-envelope"
-  noblank: true # open link in current tab
-
-- type: rss
-  icon: "fas fa-rss"
+  url: 'nurulwahdania182@gmail.com'
   noblank: true
+  
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
